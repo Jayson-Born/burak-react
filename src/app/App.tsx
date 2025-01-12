@@ -3,43 +3,48 @@ import "../css/app.css";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { RippleBadge } from "./MaterialTheme/styled";
-import { About } from "./screens/About";
-import { Users } from "./screens/Users";
-
+import {HomePage} from "./screens/homePage/index";
+import { OrdersPage } from "./screens/orderPage";
+import { ProductsPage } from "./screens/productsPage";
+import { UserPage } from "./screens/userPage";
 function App() {
   return (
     <div>
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/products">Products</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/orders">Orders</Link>
           </li>
           <li>
-            <Link to="/users">Users</Link>
+            <Link to="/member-page">UserPage</Link>
+          </li>
+          <li>
+            <Link to="/">HomePage</Link>
           </li>
         </ul>
       </nav>
       
       <Switch>
-        <Route path="/about">
-          <About />
+        <Route path="/products">
+          <ProductsPage />
         </Route>
-        <Route path="/users">
-          <Users />
+        <Route path="/orders">
+          <OrdersPage />
+        </Route>
+        <Route path="/member-page">
+          <UserPage />
         </Route>
         <Route path="/">
-          <Home />
+          <HomePage />
         </Route>
       </Switch>
     </div>
 );
 }
 
-function Home() {
-return <Container>Home</Container>
-}
+
 
 export default App;
