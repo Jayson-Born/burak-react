@@ -56,10 +56,7 @@ export function HomeNavbar() {
 
                 {!authMember ? (
                     <Box >
-                        <Button 
-                        variant="contained"
-                        style={{background:"#3776CC", color: "#f8f8ff"}}
-                        >
+                        <Button variant="contained" className="login-button">
                             Login
                         </Button>
                     </Box>
