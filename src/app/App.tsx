@@ -17,6 +17,7 @@ import "../css/footer.css"
 
 function App() {
   const location = useLocation()
+  
   console.log ("location:", location)
   return (
     <>
