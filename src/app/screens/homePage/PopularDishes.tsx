@@ -33,7 +33,7 @@ export default function PopularDishes(){
                         <Card className={"card"}>
 
                         <CardCover>
-                       <img src={ele.imagePath} alt="" />
+                       <img src={ele.imagePath} alt=""/>
                         </CardCover>
                         <CardCover className={"card-cover"}/>
                         <CardContent sx={{ justifyContent: 'flex-end' }}>
