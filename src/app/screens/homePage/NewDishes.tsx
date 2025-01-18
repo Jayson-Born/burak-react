@@ -23,7 +23,8 @@ export default function NewDishes(){
                 <Box className={"category-title"}>Fresh Menu</Box>
                 <Stack className={"cards-frame"}>
                     <CssVarsProvider>
-                    {newDishes.map((ele, index)=>{
+                        {newDishes.length !==0 ? (
+                        newDishes.map((ele, index)=>{
                         return(
                           
 
@@ -44,7 +45,7 @@ export default function NewDishes(){
                                     <Typography className={"title"}>
                                         {ele.productName}
                                     </Typography>
-                                    <Divider sx={{ width: 2, height: 24, backgroundColor: "#dd9d9d9" }} />
+                                    <Divider  width= "2" height= "24"  bg= "#dd9d9d9"  />
                                     <Typography className={"price"}>$12</Typography>
                                 </Stack>
                                 <Stack>
@@ -61,9 +62,11 @@ export default function NewDishes(){
                         
 
                             
-                        )
-                    })}
-                
+                        );
+                    })
+                ) : (
+                    <Box className="no-data">New products are not available!</Box>
+                )}
 
                         
 

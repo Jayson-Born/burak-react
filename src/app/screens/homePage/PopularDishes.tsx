@@ -26,8 +26,11 @@ export default function PopularDishes(){
             <Stack className="popular-section">
                 <Box className="category-title">Popular Dishes</Box>
                 <Stack className="cards-frame">
-                    {list.map((ele, index)=>{
+
+                   {list.length !==0 ? (
+                        list.map((ele, index)=>{
                         return(
+                          
                             <CssVarsProvider key={index}>
 
                         <Card className={"card"}>
@@ -86,11 +89,13 @@ export default function PopularDishes(){
                     </CssVarsProvider>
 
                             
-                        )
-                    })}
-                
+                    );
+                            })
+                        ) : (
+                            <Box className="no-data">Popular products are not available!</Box>
+                        )}
 
-                        
+                
 
                    
                 </Stack>
