@@ -1,8 +1,10 @@
-import Container from "@mui/material/Container/Container";
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import ChosenProduct from "./ChosenProduct";
 import Products from "./Products";
+import "../../../css/products.css";
+
+
 
 export default function ProductsPage(){
     const products = useRouteMatch();
@@ -18,4 +20,5 @@ export default function ProductsPage(){
             
         </Switch>
     </div>
+// Remove the custom useRouteMatch function
 }
