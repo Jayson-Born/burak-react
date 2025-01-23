@@ -5,6 +5,7 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Settings } from "./Settings";
 import "../../../css/userPage.css";
+import React from "react";
 
 export default function UserPage() {
   return (

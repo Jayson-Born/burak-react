@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import Button from "@mui/material/Button";
+import React from "react";
 
 export function Settings() {
   return (
