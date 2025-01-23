@@ -50,13 +50,7 @@ export default function FinishedOrders() {
                                     <p>$20</p>
 
                                 </Box>
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    className={"cancel-button"}
-                                >
-                                    Done
-                                </Button>
+                               
                                
 
                             </Box>

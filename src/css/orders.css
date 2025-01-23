@@ -115,8 +115,7 @@
   color: #616164;
 }
 
-.order-page .order-right .card-info {
-}
+
 
 .order-page .order-right .card-info .card-half {
   width: 100%;
@@ -165,7 +164,7 @@
 }
 
 .order-page .order-left .order-nav-frame {
-  width: 860px;
+  width: 800px;
   height: auto;
 }
 
@@ -189,9 +188,9 @@
 
 .order-page .order-left .order-main-content .order-main-box {
   position: relative;
-  width: 100%;
+  width: 790px;
   max-height: 285px;
-  margin: 15px 0; /* Add consistent spacing */
+  margin: 15px 0; 
   box-shadow: -13px 16px 4px rgba(0, 0, 0, 0.25),
     inset 0px -3px 20px 11px rgba(128, 120, 200, 0.15);
   border-radius: 16px;
@@ -245,6 +244,7 @@
   width: 50px;
   height: 47px;
   border-radius: 29px;
+  margin-left: 30px;
 }
 
 .order-page .order-left .order-box-scroll .orders-name-price .title-dish {
