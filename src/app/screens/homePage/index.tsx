@@ -28,8 +28,10 @@ export default function HomePage(){
     const {setPopularDishes} = actionDispatch(useDispatch());
     const popularDishes = useSelector(PopularDishesRetrieve);
     
-
-    useEffect(() => {}, []);
+ console.log(process.env.REACT_APP_API_URL);
+    useEffect((
+        // 
+    ) => {}, []);
 
 
     return <div className={"homepage"}>
