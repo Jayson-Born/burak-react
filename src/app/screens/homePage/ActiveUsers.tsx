@@ -1,67 +1,53 @@
-
-import React from "react";
+import { Box, CardContent, Container, Stack } from "@mui/material";
+import Card from "@mui/joy/Card";
+import { CssVarsProvider, Typography } from "@mui/joy";
 import CardOverflow from "@mui/joy/CardOverflow";
-import {CssVarsProvider,Container, Typography, Box, Stack}  from "@mui/joy";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import AdpectRatio from "@mui/joy/AspectRatio"
-import Card from "@mui/joy/Card"
-import Divider from "../../components/divider";
- 
-const activeUsers = [
-    {memberNick: "Martin", memberImage: "/img/martin.webp"},
-    {memberNick: "Justin", memberImage: "/img/justin.webp"},
-    {memberNick: "Rose", memberImage: "/img/rose.webp"},
-    {memberNick: "Nusret", memberImage: "/img/nusret.webp"},
-]
+import AspectRatio from "@mui/joy/AspectRatio";
 
-export default function ActiveUsers(){
+import { useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { retrieveTopUsers } from "./selector";
+import { serverApi } from "../../../lib/config";
+import React from "react";
 
-    return (
-    <div  className={"active-users-frame"}>
-        <Container>
-            <Stack  className={"main"}>
-                <Box className={"category-title"}>Active Users</Box>
-                <Stack className={"cards-frame"}>
-                    <CssVarsProvider>
-                        {activeUsers.length !== 0 ? (
-                            activeUsers.map((ele, index) => {
-                                return(
-                                    <Card  key= {index} variant="outlined" className={"card"}>
+const topUsersRetriever = createSelector(retrieveTopUsers, (topUsers) => ({
+  topUsers,
+}));
+export default function ActiveUsers() {
+  const { topUsers } = useSelector(topUsersRetriever);
+  return (
+    <div className="active-users-frame">
+      <Container>
+        <Stack className={"main"}>
+          <Box className={"category-title"}>Active Users</Box>
+          <Stack className={"cards-frame"}>
+            <CssVarsProvider>
+              {topUsers.length !== 0 ? (
+                topUsers.map((member) => {
+                  const imagePath = `${serverApi}/${member.memberImage}`;
 
-                       
-                        
-                                    <CardOverflow>
-                                    <AdpectRatio ratio="1">
-                                        <img src={ele.memberImage} alt="" />
-                                    </AdpectRatio>
-                                    </CardOverflow>
-            
-                                    <CardOverflow variant="soft" className="member-nickname">
-                                        <Stack className="info">
-                                            <Stack flexDirection={"row"}>
-                                                <Typography className={"title"}>
-                                                    {ele.memberNick}
-                                                </Typography>
-                                               
-                                            </Stack>
-                                            <Stack>
-                                               
-                                            </Stack>
-                                        </Stack>
-            
-                                    </CardOverflow>
-                                </Card>
+                  return (
+                    <Card
+                      variant="outlined"
+                      sx={{ width: 320 }}
+                      key={member._id}>
+                      <CardOverflow sx={{ height: 273, padding: 0 }}>
+                        <img src={imagePath} />
+                      </CardOverflow>
 
-                                )
-                            })
-                            
-                        ) : (
-                            <Box className="no-data">New products are not available!</Box>
-                        )}
-                    </CssVarsProvider>
-                </Stack>
-            </Stack>
-        </Container>
+                      <CardOverflow className="member-nickname ">
+                        <Box>{member.memberNick}</Box>
+                      </CardOverflow>
+                    </Card>
+                  );
+                })
+              ) : (
+                <Box className={"no-data"}>No Active Users</Box>
+              )}
+            </CssVarsProvider>
+          </Stack>
+        </Stack>
+      </Container>
     </div>
-    )
+  );
 }
