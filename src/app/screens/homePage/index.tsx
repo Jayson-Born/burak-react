@@ -19,7 +19,7 @@ import { Member } from "../../../lib/types/member";
 import "../../../css/home.css";
 
 /** REDUX SLICE & SELECTOR **/
-
+console.log(process.env.REACT_APP_API_URL);
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
   setNewDishes: (data: Product[]) => dispatch(setNewDishes(data)),
@@ -32,6 +32,7 @@ export default function HomePage() {
   );
 
   useEffect(() => {
+    console.log(process.env.REACT_APP_API_URL);
     // Backend server data request =>Data
     const product = new ProductService();
     product
@@ -46,6 +47,7 @@ export default function HomePage() {
       })
       .catch((err) => {
         console.log(err);
+        
       });
 
     product

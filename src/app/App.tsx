@@ -1,4 +1,4 @@
-import cors from "cors";
+
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link, useLocation } from "react-router-dom";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
