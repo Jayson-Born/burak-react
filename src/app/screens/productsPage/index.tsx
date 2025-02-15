@@ -6,19 +6,19 @@ import "../../../css/products.css";
 
 
 
-export default function ProductsPage(){
+export default function ProductsPage() {
     const products = useRouteMatch();
     console.log("products:", products)
     return <div className={"products-page"}>
         <Switch>
             <Route path={`${products.path}/:productId`}>
-            <ChosenProduct/>
+                <ChosenProduct />
             </Route>
             <Route path={`${products.path}`}>
                 <Products />
             </Route>
-            
+
         </Switch>
     </div>
-// Remove the custom useRouteMatch function
+    // Remove the custom useRouteMatch function
 }
