@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Container, Stack, TextField } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
@@ -10,12 +10,15 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import SearchIcon from "@mui/icons-material/Search";
 
 
-import { useDispatch,UseSelector } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import {  Dispatch } from "@reduxjs/toolkit";
 import { createSelector} from "reselect";
 import { Product } from "../../../lib/types/product";
 import {setProducts} from "./slice";
 import {retrieveProducts } from "./selector";
+import { ProductCollection } from "../../../lib/enums/product.enum";
+import ProductService from "../../services/ProductService";
+import { serverApi } from "../../../lib/config";
 
 
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -24,28 +27,30 @@ setProducts: (data: Product[]) => dispatch(setProducts({ data })),
 
 
 
-const productsRetriever = createSelector(
-  retrieveProducts,
-  (products) => ({
+const productsRetriever = createSelector(retrieveProducts, (products) => ({
     products,
-  })
-);
+  }));
 
-
-const products = [
-
-    { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-    { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-    { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-    { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-    { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-    { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-    { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-    { productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-];
-
-
+ 
+  
 export default function Products() {
+    const { setProducts } = actionDispatch(useDispatch());
+    const { products } = useSelector(productsRetriever);
+    console.log("products", products);
+  
+    useEffect(() => {
+      const productService = new ProductService();
+      productService
+        .getProducts({
+          order: "createdAt",
+          page: 1,
+          limit: 8,
+          productCollection: ProductCollection.DISH,
+          search: "",
+        })
+        .then((data) => setProducts(data))
+        .catch((err) => console.log(err));
+    }, []);
     return (
         <div className={"products"}>
             <Container>
@@ -110,21 +115,25 @@ export default function Products() {
                         </Stack>
 
                         <Stack className={"product-wrapper"}>
-                            {products.length !== 0 ? (
-                                products.map((product, index) => {
+                        {Array.isArray(products) && products.length !== 0 ? (
+                                products.map((product: Product) => {
+                                    const imagePath = `${serverApi}/ ${product.productImages[0]}`;
+                                    const sizeVolume = product.productCollection === ProductCollection.DRINK
+                                     ? product.productVolume + "litre"
+                                     : product.productSize + "size";
                                     return (
-                                        <Stack key={index} className={"product-card"}>
+                                        <Stack key={product._id} className={"product-card"}>
                                             <Stack className={"product-img"}
-                                                sx={{ backgroundImage: `url(${product.imagePath})` }}
+                                                sx={{ backgroundImage: `url(${imagePath})` }}
                                             >
-                                                <div className={"product-sale"}>Normal size</div>
+                                                <div className={"product-sale"}>{sizeVolume} </div>
                                                 <Button className={"shop-btn"}>
                                                     <img src={"/icons/shopping-cart.svg"} style={{ display: "flex" }} alt="shop botton here"
                                                     />
                                                 </Button>
                                                 <Button className={"view-btn"} sx={{ right: "36px" }}>
-                                                    <Badge badgeContent={20} color={"secondary"}>
-                                                        <RemoveRedEyeIcon sx={{ color: 20 ? "gray" : "white" }}
+                                                    <Badge badgeContent={product.productViews} color={"secondary"}>
+                                                        <RemoveRedEyeIcon sx={{ color: product.productViews === 0 ? "gray" : "white" }}
                                                         />
                                                     </Badge>
                                                 </Button>
@@ -135,7 +144,7 @@ export default function Products() {
                                                 </span>
                                                 <div className={"product-desc"}>
                                                     <MonetizationOnIcon />
-                                                    {12}
+                                                    {product.productPrice}
                                                 </div>
                                             </Box>
                                         </Stack>

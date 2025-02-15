@@ -3,8 +3,8 @@ import {AppRootState} from '../../../lib/types/screen';
 
 const selectProductsPage = (state: AppRootState) => state.productsPage;
 
-export const retrieveRestaurnat = createSelector(
-    selectProductsPage,
+export const retrieveRestaurant = createSelector(
+      selectProductsPage,
     (ProductsPage) => ProductsPage.restaurant
 );
 export const retrieveChosenProduct = createSelector(
@@ -13,5 +13,5 @@ export const retrieveChosenProduct = createSelector(
 );
 export const retrieveProducts = createSelector(
     selectProductsPage,
-    (ProductsPage) => ProductsPage.restaurant
+    (ProductsPage) => ProductsPage.products
 );

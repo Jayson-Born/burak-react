@@ -1,5 +1,4 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { UrlWithStringQuery } from "url";
 import HomePageReducer from "./screens/homePage/slice";
 import reduxLogger from 'redux-logger';
 import ProductsPageReducer from "./screens/productsPage/slice";
