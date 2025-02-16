@@ -3,8 +3,14 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 import { useState } from "react";
+import { CartItem } from "../../../lib/types/search";
 
-export default function HomeNavbar() {
+interface HomeNavbarProps{
+    cartItems: CartItem[]
+}
+
+export default function HomeNavbar( props: HomeNavbarProps) {
+    const {cartItems} = props;
     const authMember = null;
     const [count, setCount] = useState(0);
     const [value, setvalue] = useState<boolean>(true);
@@ -67,7 +73,7 @@ export default function HomeNavbar() {
                     </NavLink>
                 </Box>
                 
-                <Basket />
+                <Basket cartItems={cartItems} />
 
                 
                 {!authMember ? (
