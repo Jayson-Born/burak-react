@@ -90,7 +90,7 @@ export default function Products() {
     }
 
     const chooseDishHandler = (id: string) => {
-    history.push(`/products/ ${id}`);
+    history.push(`/prodduct/${id}`)
 
     }
 
@@ -116,7 +116,6 @@ export default function Products() {
                                     <Button
                                         variant="contained"
                                         className="searchButton"
-                                        type="submit"
                                         endIcon={<SearchIcon />}
                                         onClick={searchProductHandler}
                                     >
