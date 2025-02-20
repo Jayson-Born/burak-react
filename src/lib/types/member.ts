@@ -29,6 +29,7 @@ export interface MemberInput {
 export interface LoginInput {
     memberNick: string;
     memberPassword: string;
+
 }
 
 export interface MemberUpdateInput {
