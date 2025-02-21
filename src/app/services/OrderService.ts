@@ -6,6 +6,9 @@ import { Order, OrderItemInput } from "../../lib/types/order";
 
 
 class OrderService {
+  getMyOrders(arg0: { orderStatus: import("../../lib/enums/order.enum").OrderStatus; page: number; limit: number; }) {
+    throw new Error("Method not implemented.");
+  }
     private readonly path: string;
 
     constructor() {

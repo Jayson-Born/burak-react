@@ -1,5 +1,5 @@
 import Container from "@mui/material/Container/Container";
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import TabContext from "@mui/lab/TabContext"
 import { Box, Stack, Tab, Tabs } from "@mui/material";
 import FinishedOrders from "./FinishedOrders";
@@ -12,6 +12,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import "../../../css/orders.css"
 import { Order, OrderInquiry } from "../../../lib/types/order";
 import { OrderStatus } from "../../../lib/enums/order.enum";
+import OrderService from "../../services/OrderService";
 
 
 const actionDispatch = (dispatch: Dispatch) => ({
