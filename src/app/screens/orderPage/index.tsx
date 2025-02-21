@@ -1,16 +1,29 @@
 import Container from "@mui/material/Container/Container";
-import React, { useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import TabContext from "@mui/lab/TabContext"
-import { Box, Stack, StyledEngineProvider, Tab, Tabs } from "@mui/material";
+import { Box, Stack, Tab, Tabs } from "@mui/material";
 import FinishedOrders from "./FinishedOrders";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
-import "../../../css/orders.css"
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { setPausedOrders, setProcessOrders, setFinishedOrders  } from "./slice";
+import { Dispatch } from "@reduxjs/toolkit";
+
+import "../../../css/orders.css"
+import { Order } from "../../../lib/types/order";
+
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
+})
+
+
 export default function OrdersPage(){
     const[value, setValue] = useState ("1");
 
-    const handleChange = (e: React.SyntheticEvent, newValue: string) => {
+    const handleChange = (e: SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
 
