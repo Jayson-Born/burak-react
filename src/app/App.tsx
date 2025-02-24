@@ -15,12 +15,12 @@ import useBasket from "./hooks/useBasket"
 import { sweetErrorHandling, sweetTopSuccessAlert } from "../lib/sweetAlert";
 import { T } from "../lib/types/common";
 import {Messages} from "../lib/config"
+import { useGlobals } from "./hooks/useGlobals";
+import MemberService from "./services/MemberService";
 import "../css/app.css";
 import "../css/navbar.css"
 import "../css/footer.css"
 import "../css/home.css"
-import { useGlobals } from "./hooks/useGlobals";
-import MemberService from "./services/MemberService";
 
 
 
@@ -95,7 +95,12 @@ function App() {
       )}
       <Switch>
         <Route path="/products">
-          <ProductsPage onAdd={onAdd} />
+          <ProductsPage
+           cartItems={cartItems}
+           onAdd={onAdd}
+           onRemove={onRemove}
+           onDelete={onDelete}
+           onDeleteAll={onDeleteAll} />
         </Route>
         <Route path="/orders">
           <OrdersPage />

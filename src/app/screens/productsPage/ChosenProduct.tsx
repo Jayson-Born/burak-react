@@ -42,6 +42,7 @@ const restaurantRetriev = createSelector(
 
 interface ChosenProductsProps{
     onAdd: (item: CartItem) => void;
+    cartItems: CartItem[];
 }
 
 
