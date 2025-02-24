@@ -48,6 +48,7 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                                 Products
                             </NavLink>
                         </Box>
+                        
 
                         {authMember ? (
                             <Box className={"hover-line"}>
